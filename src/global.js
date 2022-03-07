@@ -2,6 +2,7 @@ var Ox = 0;
 var Oy = 0;
 var movingBodies = [];
 var projectiles = [];
+var score = 0;
 
 export const Sides = {
     TOP: 0,
@@ -40,4 +41,12 @@ export function getProjectiles() {
 
 export function removeProjectile(id) {
     projectiles = projectiles.filter(x => x.id !== id);
+}
+
+export function increaseScore() {
+    score +=1;
+}
+
+export function getScore() {
+    return score;
 }

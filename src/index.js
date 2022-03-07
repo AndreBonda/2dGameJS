@@ -1,6 +1,6 @@
 import { Player } from "./model/player.js";
 import { Projectile } from "./model/projectile.js";
-import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, projectileRadius, playerRadius } from "./global.js";
+import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, projectileRadius, playerRadius, increaseScore, getScore } from "./global.js";
 import { enemyGenerator } from "./enemyGenerator.js";
 
 const canvas = document.querySelector('canvas');
@@ -26,6 +26,11 @@ enemyGenerator();
 function animate() {
     c.clearRect(0, 0, innerWidth, innerHeight);
 
+    c.beginPath();
+    c.font = "30px Arial";
+    c.fillStyle = 'lightblue';
+    c.fillText(`Score ${getScore()}`, 10, 50);
+
     player.draw(c);
 
     getEnemies().forEach(b => {
@@ -49,6 +54,7 @@ function animate() {
             if(p.collision(enemy)) {
                 removeEnemy(enemy.id);
                 removeProjectile(p.id);
+                increaseScore();
             }
         });
 
