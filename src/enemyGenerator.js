@@ -24,7 +24,7 @@ export function enemyGenerator() {
                 x = innerWidth;
                 y = randomInt(innerHeight);
                 // quando spawna in right side l'angolo dovrà essere compreso tra π/2 e 3π/2
-                alpha = randomFloat(Math.PI * 1.5) + Math.PI / 2;
+                alpha = randomFloat(Math.PI) + Math.PI / 2;
                 break;
             case Sides.BOTTOM:
                 x = randomInt(innerWidth);
