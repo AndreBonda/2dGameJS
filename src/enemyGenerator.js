@@ -1,13 +1,14 @@
 import { randomInt, randomFloat } from './util/util.js';
 import { Enemy } from "./model/enemy.js";
-import { Sides, getEnemies, msEnemySpawn } from "./global.js";
+import { Sides, getEnemies, msEnemySpawn,GameStatus, getGameStatus } from "./global.js";
 
 /**
  * Funzione che ad ogni delta di tempo, seleziona in modo random un lato del canvas e spawna un enemy
  * con un angolo alpha (direzione) all'interno del canvas.*/
 export function enemyGenerator() {
     setInterval(function () {
-        const sideGeneration = randomInt(4);
+        if(getGameStatus() === GameStatus.RUNNING) {
+            const sideGeneration = randomInt(4);
         // coordinate e angolo di direzione per lo spawn del corpo
         let x = 0;
         let y = 0;
@@ -42,6 +43,6 @@ export function enemyGenerator() {
     
         const enemy = new Enemy(x, y, alpha, 300, 20, 'green');
         getEnemies().push(enemy);
-    
+        }
     }, msEnemySpawn);
 }

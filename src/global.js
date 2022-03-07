@@ -1,9 +1,3 @@
-var Ox = 0;
-var Oy = 0;
-var movingBodies = [];
-var projectiles = [];
-var score = 0;
-
 export const Sides = {
     TOP: 0,
     RIGHT: 1,
@@ -11,9 +5,21 @@ export const Sides = {
     LEFT: 3
 }
 
+export const GameStatus = {
+    RUNNING: 0,
+    STOPPED: 1
+}
+
 export const msEnemySpawn = 200;
 export const projectileRadius = 8;
 export const playerRadius = 20;
+
+var Ox = 0;
+var Oy = 0;
+var movingBodies = [];
+var projectiles = [];
+var score = 0;
+var gameStatus = GameStatus.STOPPED;
 
 export function getO() {
     return {
@@ -49,4 +55,17 @@ export function increaseScore() {
 
 export function getScore() {
     return score;
+}
+
+export function getGameStatus() {
+    return gameStatus;
+}
+
+export function togglePlayPause() {
+    if(gameStatus === GameStatus.RUNNING) {
+        gameStatus = GameStatus.STOPPED;
+    }else {
+        gameStatus = GameStatus.RUNNING;
+    }
+    console.log(gameStatus);
 }
