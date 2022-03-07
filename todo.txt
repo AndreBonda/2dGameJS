@@ -1,0 +1,3 @@
+Il contesto è utilizzato per creare e manipolare il contenuto.
+GameLoop: Present, accept, interpret, calculate, repeat
+execute-once-per-frame main loop
