@@ -64,8 +64,9 @@ export function getGameStatus() {
 export function togglePlayPause() {
     if(gameStatus === GameStatus.RUNNING) {
         gameStatus = GameStatus.STOPPED;
+        document.getElementById("playBtn").innerText = "Play";
     }else {
         gameStatus = GameStatus.RUNNING;
+        document.getElementById("playBtn").innerText = "Pause";
     }
-    console.log(gameStatus);
 }
