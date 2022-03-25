@@ -10,7 +10,6 @@ export const GameStatus = {
     STOPPED: 1
 }
 
-export const msEnemySpawn = 200;
 export const projectileRadius = 8;
 export const playerRadius = 20;
 
