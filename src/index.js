@@ -1,12 +1,14 @@
 import { Player } from "./model/player.js";
 import { Projectile } from "./model/projectile.js";
-import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, projectileRadius, playerRadius, increaseScore, getScore,togglePlayPause, GameStatus, getGameStatus } from "./global.js";
+import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, projectileRadius, playerRadius, increaseScore, getScore,togglePlayPause, GameStatus, getGameStatus, resetEnemyBounceCalculated } from "./global.js";
 import { enemyGenerator } from "./enemyGenerator.js";
+import { Enemy } from "./model/enemy.js";
+import { collision } from "./handleCollision.js";
 
 const canvas = document.querySelector('canvas');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-//ottengo il contesto
+// getting the context
 const c = canvas.getContext('2d');
 
 setO(innerWidth / 2, innerHeight / 2);
@@ -14,20 +16,6 @@ setO(innerWidth / 2, innerHeight / 2);
 const player = new Player(getO().Ox, getO().Oy, playerRadius, 'red');
 player.draw(c);
 
-canvas.addEventListener('click', e => {
-    if(getGameStatus() === GameStatus.RUNNING) {
-        const p = new Projectile(e.clientX, e.clientY, projectileRadius, 'blue');
-        p.draw(c);
-        getProjectiles().push(p);
-    }
-});
-
-document.getElementById("playBtn").addEventListener('click', e => {
-    togglePlayPause();
-});
-
-animate();
-enemyGenerator();
 
 function animate() {
     if(getGameStatus() === GameStatus.RUNNING) {
@@ -46,7 +34,15 @@ function animate() {
             // remove items outside the canvas. O(N^2)
             if (b.getX() < 0 || b.getX() > innerWidth || b.getY() < 0 || b.getY() > innerHeight)
                 removeEnemy(b.id);
-    
+
+            // collision between enemies detection
+            getEnemies().forEach(otherEnemy => {
+                if(b.id !== otherEnemy.id && b.collision(otherEnemy)) {
+                    collision(b, otherEnemy);
+                }
+            });
+
+            resetEnemyBounceCalculated();
             b.draw(c);
         });
     
@@ -57,6 +53,7 @@ function animate() {
             if (p.getX() < 0 || p.getX() > innerWidth || p.getY() < 0 || p.getY() > innerHeight)
             removeProjectile(p.id);
     
+            // collision between enemies and projectiles
             getEnemies().forEach(enemy => {
                 if(p.collision(enemy)) {
                     removeEnemy(enemy.id);
@@ -71,3 +68,20 @@ function animate() {
 
     requestAnimationFrame(animate);
 }
+
+animate();
+enemyGenerator();
+
+// DOM elements
+canvas.addEventListener('click', e => {
+    if(getGameStatus() === GameStatus.RUNNING) {
+        const p = new Projectile(e.clientX, e.clientY, projectileRadius, 'blue');
+        console.log(p);
+        p.draw(c);
+        getProjectiles().push(p);
+    }
+});
+
+document.getElementById("playBtn").addEventListener('click', e => {
+    togglePlayPause();
+});

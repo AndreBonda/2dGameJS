@@ -1,3 +1,26 @@
-Il contesto è utilizzato per creare e manipolare il contenuto.
-GameLoop: Present, accept, interpret, calculate, repeat
-execute-once-per-frame main loop
+Tests:
+// 1-d collision
+// const enemy1 = new Enemy(getO().Ox + 200, getO().Oy, 20, 'green', 100, 0);
+// const enemy2 = new Enemy(getO().Ox - 200, getO().Oy, 20, 'green', 500, 0);
+
+// const enemy1 = new Enemy(getO().Ox - 200, getO().Oy, 20, 'blue', 1000, 0);
+// const enemy2 = new Enemy(getO().Ox + 150, getO().Oy - 20, 20, 'green', 20, 0);
+
+// const enemy1 = new Enemy(getO().Ox + 200, getO().Oy, 20, 'blue', 1000, Math.PI);
+// const enemy2 = new Enemy(getO().Ox - 150, getO().Oy - 20, 20, 'green', 20, 0);
+
+// a destra 
+// const enemy1 = new Enemy(getO().Ox - 200, getO().Oy + 10, 20, 'blue', 1000, 0);
+// const enemy2 = new Enemy(getO().Ox + 200, getO().Oy, 20, 'green', 200, -Math.PI);
+
+// a sinistra
+// const enemy1 = new Enemy(getO().Ox - 200, getO().Oy, 20, 'blue', 200, -Math.PI);
+// const enemy2 = new Enemy(getO().Ox + 200, getO().Oy - 20, 20, 'green', 1000, -Math.PI);
+
+// in basso
+// const enemy1 = new Enemy(getO().Ox - 20, getO().Oy - 200, 20, 'blue', 1000, -Math.PI / 2);
+// const enemy2 = new Enemy(getO().Ox, getO().Oy + 10, 20, 'green', 400, -Math.PI / 2);
+
+
+// getEnemies().push(enemy1);
+// getEnemies().push(enemy2);

@@ -8,7 +8,7 @@ export class MovingBody extends Body {
     constructor(x, y, radius, color, vx, vy, v, alpha) {
         super(x, y, radius, color);
 
-        if ((!vx || !vy) && (!v || !alpha))
+        if ((!vx || !vy) && (!v || alpha === undefined))
             throw new Error("No valid arguments");
 
         if (vx && vy)
@@ -16,26 +16,6 @@ export class MovingBody extends Body {
         else
             this.vector = Vector2D.FromMagnitude(v, alpha);
     }
-
-    // Funzione che calcola la velocità e l'angolo di un corpo
-    // calculateMovement(clickX, clickY, fixedVelocity) {
-    //     // Calcolo Vx e Vy del proiettile rispetto all'origine del canvas dove si trova il player.
-    //     const vx = clickX - getO().Ox;
-    //     const vy = getO().Oy - clickY;
-
-    //     // Ricavo il valore assoluto di vx e vy per utilizzare il teorema di pitagora per calcolare la velocità,
-    //     // data dall'ipotenusa.
-    //     const absVx = Math.abs(vx);
-    //     const absVy = Math.abs(vy);
-
-    //     if (fixedVelocity)
-    //         this.velocity = 800;
-    //     else
-    //         this.velocity = Math.sqrt(Math.pow(absVx, 2) + Math.pow(absVy, 2)) * 2;
-
-    //     this.alpha = Math.atan2(vy, vx);
-    // }
-
 
     update() {
         /**
@@ -48,10 +28,10 @@ export class MovingBody extends Body {
         let updateVelocity = this.vector.v;
 
         if (this.constructor.name === Projectile.name && updateVelocity < MIN_PROJECTILE_VELOCITY)
-        updateVelocity = MIN_PROJECTILE_VELOCITY;
+            updateVelocity = MIN_PROJECTILE_VELOCITY;
 
         this.x += Math.cos(this.vector.alpha) * updateVelocity / 200;
-        this.y += -Math.sin(this.vector.alpha) * updateVelocity / 200;
+        this.y -= Math.sin(this.vector.alpha) * updateVelocity / 200;
     }
 
 }
