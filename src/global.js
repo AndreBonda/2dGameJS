@@ -44,7 +44,6 @@ export function getEnemies() {
 }
 
 export function removeEnemy(id) {
-    console.log("despawn");
     const removed = movingBodies.filter(x => x.id === id);
     movingBodies = movingBodies.filter(x => x.id !== id);
 }

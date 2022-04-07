@@ -75,7 +75,6 @@ enemyGenerator();
 canvas.addEventListener('click', e => {
     if(getGameStatus() === GameStatus.RUNNING) {
         const p = new Projectile(e.clientX, e.clientY, projectileRadius, 'blue');
-        console.log(p);
         p.draw(c);
         getProjectiles().push(p);
     }

@@ -9,7 +9,7 @@ import { MS_ENEMY_SPAWN } from './consts.js';
 export function enemyGenerator() {
     setInterval(function () {
         if(getGameStatus() === GameStatus.RUNNING) {
-            const sideGeneration = randomInt(0, 4);
+            const sideGeneration = randomInt(4);
         // coordinate e angolo di direzione per lo spawn del corpo
         let x = 0;
         let y = 0;
@@ -43,9 +43,14 @@ export function enemyGenerator() {
         }
     
         let randomMass = randomIntRange(10, 40);
-        const enemy = new Enemy(x, y, randomMass, 'green', 300, alpha);
-        console.log(enemy);
-        getEnemies().push(enemy);
+        const newEnemy = new Enemy(x, y, randomMass, 'green', 300, alpha);
+
+        // if new element collides with another one, it will skip the generation
+        if (!getEnemies().some(e => newEnemy.collision(e)))
+            getEnemies().push(newEnemy);
+
+            console.log(randomIntRange(0, innerWidth));
+            console.log(randomInt(4));
         }
     }, MS_ENEMY_SPAWN);
 }
