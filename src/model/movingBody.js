@@ -5,8 +5,8 @@ import { Projectile } from "./projectile.js";
 import { MIN_PROJECTILE_VELOCITY } from "../consts.js";
 
 export class MovingBody extends Body {
-    constructor(x, y, radius, color, vx, vy, v, alpha) {
-        super(x, y, radius, color);
+    constructor(x, y, massRadius, color, vx, vy, v, alpha) {
+        super(x, y, massRadius, color);
 
         if ((!vx || !vy) && (!v || alpha === undefined))
             throw new Error("No valid arguments");

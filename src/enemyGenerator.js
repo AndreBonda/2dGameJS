@@ -1,4 +1,4 @@
-import { randomInt, randomFloat } from './util/util.js';
+import { randomInt, randomFloat, randomIntRange } from './util/util.js';
 import { Enemy } from "./model/enemy.js";
 import { Sides, getEnemies,GameStatus, getGameStatus } from "./global.js";
 import { MS_ENEMY_SPAWN } from './consts.js';
@@ -9,7 +9,7 @@ import { MS_ENEMY_SPAWN } from './consts.js';
 export function enemyGenerator() {
     setInterval(function () {
         if(getGameStatus() === GameStatus.RUNNING) {
-            const sideGeneration = randomInt(4);
+            const sideGeneration = randomInt(0, 4);
         // coordinate e angolo di direzione per lo spawn del corpo
         let x = 0;
         let y = 0;
@@ -42,7 +42,9 @@ export function enemyGenerator() {
                 break;
         }
     
-        const enemy = new Enemy(x, y, 20, 'green', 300, alpha);
+        let randomMass = randomIntRange(10, 40);
+        const enemy = new Enemy(x, y, randomMass, 'green', 300, alpha);
+        console.log(enemy);
         getEnemies().push(enemy);
         }
     }, MS_ENEMY_SPAWN);

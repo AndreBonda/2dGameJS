@@ -16,7 +16,6 @@ setO(innerWidth / 2, innerHeight / 2);
 const player = new Player(getO().Ox, getO().Oy, playerRadius, 'red');
 player.draw(c);
 
-
 function animate() {
     if(getGameStatus() === GameStatus.RUNNING) {
         c.clearRect(0, 0, innerWidth, innerHeight);
@@ -32,7 +31,7 @@ function animate() {
             b.update();
     
             // remove items outside the canvas. O(N^2)
-            if (b.getX() < 0 || b.getX() > innerWidth || b.getY() < 0 || b.getY() > innerHeight)
+            if (b.x < 0 || b.x > innerWidth || b.y < 0 || b.y > innerHeight)
                 removeEnemy(b.id);
 
             // collision between enemies detection
@@ -50,7 +49,7 @@ function animate() {
             p.update();
     
             // remove projectiles outside the canvas. O(N^2)
-            if (p.getX() < 0 || p.getX() > innerWidth || p.getY() < 0 || p.getY() > innerHeight)
+            if (p.x < 0 || p.x > innerWidth || p.y < 0 || p.y > innerHeight)
             removeProjectile(p.id);
     
             // collision between enemies and projectiles
