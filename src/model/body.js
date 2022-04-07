@@ -1,12 +1,11 @@
 import {uuidv4} from '../util/util.js';
 
 export class Body {
-    constructor(x, y, massRadius, color) {
+    constructor(x, y, radius, color) {
         this.id = uuidv4();
         this.x = x;
         this.y = y;
-        this.radius = massRadius;
-        this.mass = massRadius;
+        this.radius = radius;
         this.color = color;
     }
 
@@ -19,8 +18,8 @@ export class Body {
 
     // Calcola la distanza da un altro body
     distanceTo(b) {
-        const diffx = Math.abs(this.x - b.x);
-        const diffy = Math.abs(this.y - b.y);
+        const diffx = this.x - b.x;
+        const diffy = this.y - b.y;
         return Math.sqrt(Math.pow(diffx, 2) + Math.pow(diffy, 2));
     }
 

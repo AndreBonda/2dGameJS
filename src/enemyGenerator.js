@@ -1,4 +1,4 @@
-import { randomInt, randomFloat, randomIntRange } from './util/util.js';
+import { randomInt, randomFloat, randomIntRange, randomColor } from './util/util.js';
 import { Enemy } from "./model/enemy.js";
 import { Sides, getEnemies,GameStatus, getGameStatus } from "./global.js";
 import { MS_ENEMY_SPAWN } from './consts.js';
@@ -43,14 +43,12 @@ export function enemyGenerator() {
         }
     
         let randomMass = randomIntRange(10, 40);
-        const newEnemy = new Enemy(x, y, randomMass, 'green', 300, alpha);
+        const newEnemy = new Enemy(x, y, randomMass, randomColor(), 300, alpha);
 
         // if new element collides with another one, it will skip the generation
         if (!getEnemies().some(e => newEnemy.collision(e)))
             getEnemies().push(newEnemy);
-
-            console.log(randomIntRange(0, innerWidth));
-            console.log(randomInt(4));
+            
         }
     }, MS_ENEMY_SPAWN);
 }

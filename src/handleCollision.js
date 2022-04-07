@@ -8,7 +8,6 @@ import { Vector2D } from "./model/Vector2D.js";
  * @param {Enemy} b2 
  */
 export function collision(b1, b2) {
-    // TODO: fix collision: sometimes two balls remain attached
     if (!isBounceCalculated(b1.id)) {
         addEnemyBounceCalculated(b1.id);
         addEnemyBounceCalculated(b2.id);
@@ -32,10 +31,6 @@ export function collision(b1, b2) {
         //normal velocities after collision
         let v1nAfter = v2n;
         let v2nAfter = v1n;
-
-        // not working
-        // let v1nAfter = (v1n * (b1.mass - b2.mass) + 2 * b2.mass * v2n) / (b1.mass + b2.mass);
-        // let v2nAfter = (v2n * (b2.mass - b1.mass) + 2 * b1.mass * v1n) / (b1.mass + b2.mass);
 
         // Convert normal and tangential scalar into vectors
         v1nAfter = unitnormal.multiply(v1nAfter);

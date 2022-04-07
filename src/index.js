@@ -4,6 +4,7 @@ import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, 
 import { enemyGenerator } from "./enemyGenerator.js";
 import { Enemy } from "./model/enemy.js";
 import { collision } from "./handleCollision.js";
+import { PLAYER_COLOR, PROJECTILE_COLOR } from "./consts.js";
 
 const canvas = document.querySelector('canvas');
 canvas.width = innerWidth;
@@ -13,7 +14,7 @@ const c = canvas.getContext('2d');
 
 setO(innerWidth / 2, innerHeight / 2);
 
-const player = new Player(getO().Ox, getO().Oy, playerRadius, 'red');
+const player = new Player(getO().Ox, getO().Oy, playerRadius, PLAYER_COLOR);
 player.draw(c);
 
 function animate() {
@@ -55,6 +56,7 @@ function animate() {
             // collision between enemies and projectiles
             getEnemies().forEach(enemy => {
                 if(p.collision(enemy)) {
+                    enemy.spawnChildren();
                     removeEnemy(enemy.id);
                     removeProjectile(p.id);
                     increaseScore();
@@ -74,7 +76,7 @@ enemyGenerator();
 // DOM elements
 canvas.addEventListener('click', e => {
     if(getGameStatus() === GameStatus.RUNNING) {
-        const p = new Projectile(e.clientX, e.clientY, projectileRadius, 'blue');
+        const p = new Projectile(e.clientX, e.clientY, projectileRadius, PROJECTILE_COLOR);
         p.draw(c);
         getProjectiles().push(p);
     }
