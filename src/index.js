@@ -1,10 +1,9 @@
 import { Player } from "./model/player.js";
 import { Projectile } from "./model/projectile.js";
-import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, projectileRadius, playerRadius, increaseScore, getScore,togglePlayPause, GameStatus, getGameStatus, resetEnemyBounceCalculated } from "./global.js";
+import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, increaseScore, getScore,togglePlayPause, GameStatus, getGameStatus, resetEnemyBounceCalculated } from "./global.js";
 import { enemyGenerator } from "./enemyGenerator.js";
-import { Enemy } from "./model/enemy.js";
 import { collision } from "./handleCollision.js";
-import { PLAYER_COLOR, PROJECTILE_COLOR } from "./consts.js";
+import { OFFSET_LIMIT_CANVAS, PLAYER_COLOR, PLAYER_RADIUS, PROJECTILE_COLOR, PROJECTILE_RADIUS } from "./consts.js";
 
 const canvas = document.querySelector('canvas');
 canvas.width = innerWidth;
@@ -14,7 +13,7 @@ const c = canvas.getContext('2d');
 
 setO(innerWidth / 2, innerHeight / 2);
 
-const player = new Player(getO().Ox, getO().Oy, playerRadius, PLAYER_COLOR);
+const player = new Player(getO().Ox, getO().Oy, PLAYER_RADIUS, PLAYER_COLOR);
 player.draw(c);
 
 function animate() {
@@ -50,7 +49,7 @@ function animate() {
             p.update();
     
             // remove projectiles outside the canvas. O(N^2)
-            if (p.x < 0 || p.x > innerWidth || p.y < 0 || p.y > innerHeight)
+            if (p.x < 0 - OFFSET_LIMIT_CANVAS || p.x > innerWidth + OFFSET_LIMIT_CANVAS || p.y < 0 - OFFSET_LIMIT_CANVAS || p.y > innerHeight + OFFSET_LIMIT_CANVAS)
             removeProjectile(p.id);
     
             // collision between enemies and projectiles
@@ -76,7 +75,7 @@ enemyGenerator();
 // DOM elements
 canvas.addEventListener('click', e => {
     if(getGameStatus() === GameStatus.RUNNING) {
-        const p = new Projectile(e.clientX, e.clientY, projectileRadius, PROJECTILE_COLOR);
+        const p = new Projectile(e.clientX, e.clientY, PROJECTILE_RADIUS, PROJECTILE_COLOR);
         p.draw(c);
         getProjectiles().push(p);
     }

@@ -9,6 +9,10 @@ export class Body {
         this.color = color;
     }
 
+    /**
+     * Body rendering
+     * @param {CanvasRenderingContext2D} c. Rendering context for the drawing surface
+     */
     draw(c) {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);

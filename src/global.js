@@ -10,9 +10,6 @@ export const GameStatus = {
     STOPPED: 1
 }
 
-export const projectileRadius = 8;
-export const playerRadius = 20;
-
 var Ox = 0;
 var Oy = 0;
 var movingBodies = [];

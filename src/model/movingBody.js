@@ -25,13 +25,9 @@ export class MovingBody extends Body {
          * Più clicco lontano dal centro, più la velocità sarà alta.
          * Quindi le coordinate le moltiplico per la velocità / 200.
         */
-        let updateVelocity = this.vector.v;
-
-        if (this.constructor.name === Projectile.name && updateVelocity < MIN_PROJECTILE_VELOCITY)
-            updateVelocity = MIN_PROJECTILE_VELOCITY;
-
-        this.x += Math.cos(this.vector.alpha) * updateVelocity / 200;
-        this.y -= Math.sin(this.vector.alpha) * updateVelocity / 200;
+       
+        this.x += Math.cos(this.vector.alpha) * this.vector.v / 200;
+        this.y -= Math.sin(this.vector.alpha) * this.vector.v / 200;
     }
 
 }

@@ -1,7 +1,7 @@
 import { randomInt, randomFloat, randomIntRange, randomColor } from './util/util.js';
 import { Enemy } from "./model/enemy.js";
 import { Sides, getEnemies,GameStatus, getGameStatus } from "./global.js";
-import { MS_ENEMY_SPAWN } from './consts.js';
+import { ENEMY_VELOCITY, MS_ENEMY_SPAWN } from './consts.js';
 
 /**
  * Funzione che ad ogni delta di tempo, seleziona in modo random un lato del canvas e spawna un enemy
@@ -42,8 +42,8 @@ export function enemyGenerator() {
                 break;
         }
     
-        let randomMass = randomIntRange(10, 40);
-        const newEnemy = new Enemy(x, y, randomMass, randomColor(), 300, alpha);
+        let randomRadius = randomIntRange(10, 40);
+        const newEnemy = new Enemy(x, y, randomRadius, randomColor(), ENEMY_VELOCITY, alpha);
 
         // if new element collides with another one, it will skip the generation
         if (!getEnemies().some(e => newEnemy.collision(e)))

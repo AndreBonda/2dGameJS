@@ -10,9 +10,12 @@ export const GameStatus = {
     STOPPED: 1
 }
 
-export const MS_ENEMY_SPAWN = 700;
-export const PROJECTILE_RADIUS = 8;
 export const PLAYER_RADIUS = 20;
 export const PLAYER_COLOR = '#42f593';
-export const MIN_PROJECTILE_VELOCITY = 400;
+export const MS_ENEMY_SPAWN = 200;
+export const ENEMY_VELOCITY = 600;
+export const PROJECTILE_RADIUS = 3;
+export const PROJECTILE_TRAIL_NUMBER = 20;
+export const MIN_PROJECTILE_VELOCITY = 500;
 export const PROJECTILE_COLOR = '#4293f5';
+export const OFFSET_LIMIT_CANVAS = 200;
