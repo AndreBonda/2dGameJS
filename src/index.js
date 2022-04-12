@@ -1,6 +1,6 @@
 import { Player } from "./model/player.js";
 import { Projectile } from "./model/projectile.js";
-import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, increaseScore, getScore,togglePlayPause, GameStatus, getGameStatus, resetEnemyBounceCalculated } from "./global.js";
+import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, increaseScore, getScore,togglePlayPause, GameStatus, getGameStatus, resetEnemyBounceCalculated, playAgain, endGame } from "./global.js";
 import { enemyGenerator } from "./enemyGenerator.js";
 import { collision } from "./handleCollision.js";
 import { OFFSET_LIMIT_CANVAS, PLAYER_COLOR, PLAYER_RADIUS, PROJECTILE_COLOR, PROJECTILE_RADIUS } from "./consts.js";
@@ -29,8 +29,12 @@ function animate() {
     
         getEnemies().forEach(b => {
             b.update();
+
+            if (b.collision(player)) {
+                endGame();
+            }
     
-            // remove items outside the canvas. O(N^2)
+            // remove items outside the canvas
             if (b.x < 0 || b.x > innerWidth || b.y < 0 || b.y > innerHeight)
                 removeEnemy(b.id);
 
@@ -81,6 +85,10 @@ canvas.addEventListener('click', e => {
     }
 });
 
-document.getElementById("playBtn").addEventListener('click', e => {
+document.getElementById("play").addEventListener('click', e => {
     togglePlayPause();
+});
+
+document.getElementById("play-again").addEventListener('click',e => {
+    playAgain();
 });

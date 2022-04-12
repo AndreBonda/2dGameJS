@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,26 @@
     <title>Canvas game</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div id="scoreModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>You've been hit</h2>
+            </div>
+            <div class="modal-body">
+                <h1>Your score: <p id="finalScore" style="display: inline;">150</p></h1>
+            </div>
+            <div class="modal-footer" style="text-align:center">
+                <button id="play-again">Play again</button>
+            </div>
+        </div>
+    </div>
     <canvas></canvas>
     <div class="controls">
-        <button id="playBtn">Play</button>
+        <button id="play">Play</button>
     </div>
     <script type="module" src="./src/index.js"></script>
 </body>
+
 </html>

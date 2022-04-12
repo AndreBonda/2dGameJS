@@ -68,11 +68,26 @@ export function getGameStatus() {
 export function togglePlayPause() {
     if(gameStatus === GameStatus.RUNNING) {
         gameStatus = GameStatus.STOPPED;
-        document.getElementById("playBtn").innerText = "Play";
+        document.getElementById("play").innerText = 'Play';
     }else {
         gameStatus = GameStatus.RUNNING;
-        document.getElementById("playBtn").innerText = "Pause";
+        document.getElementById("play").innerText = 'Pause';
+        document.getElementById("scoreModal").style.display = 'none';
     }
+}
+
+export function playAgain() {
+    gameStatus = GameStatus.RUNNING;
+    movingBodies = [];
+    projectiles = [];
+    score = 0;
+    document.getElementById("scoreModal").style.display = 'none';
+}
+
+export function endGame() {
+    gameStatus = GameStatus.STOPPED;
+    document.getElementById("scoreModal").style.display = 'block';
+    document.getElementById("finalScore").innerText = score;
 }
 
 /**
