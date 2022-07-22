@@ -1,14 +1,4 @@
-export const Sides = {
-    TOP: 0,
-    RIGHT: 1,
-    BOTTOM: 2,
-    LEFT: 3
-}
-
-export const GameStatus = {
-    RUNNING: 0,
-    STOPPED: 1
-}
+import { GameStatus } from "./consts.js";
 
 var Ox = 0;
 var Oy = 0;

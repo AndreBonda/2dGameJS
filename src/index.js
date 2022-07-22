@@ -1,9 +1,9 @@
 import { Player } from "./model/player.js";
 import { Projectile } from "./model/projectile.js";
-import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, increaseScore, getScore,togglePlayPause, GameStatus, getGameStatus, resetEnemyBounceCalculated, playAgain, endGame } from "./global.js";
+import { getO, setO, getEnemies, removeEnemy, getProjectiles, removeProjectile, increaseScore, getScore,togglePlayPause, getGameStatus, resetEnemyBounceCalculated, playAgain, endGame } from "./global.js";
 import { enemyGenerator } from "./enemyGenerator.js";
 import { collision } from "./handleCollision.js";
-import { OFFSET_LIMIT_CANVAS, PLAYER_COLOR, PLAYER_RADIUS, PROJECTILE_COLOR, PROJECTILE_RADIUS } from "./consts.js";
+import { OFFSET_LIMIT_CANVAS, PLAYER_COLOR, PLAYER_RADIUS, PROJECTILE_COLOR, PROJECTILE_RADIUS, GameStatus } from "./consts.js";
 
 const canvas = document.querySelector('canvas');
 canvas.width = innerWidth;

@@ -1,7 +1,7 @@
 import { randomInt, randomFloat, randomIntRange, randomColor } from './util/util.js';
 import { Enemy } from "./model/enemy.js";
-import { Sides, getEnemies,GameStatus, getGameStatus } from "./global.js";
-import { ENEMY_VELOCITY, MS_ENEMY_SPAWN } from './consts.js';
+import { getEnemies, getGameStatus } from "./global.js";
+import { ENEMY_VELOCITY, MS_ENEMY_SPAWN, Sides, GameStatus } from './consts.js';
 
 /**
  * Funzione che ad ogni delta di tempo, seleziona in modo random un lato del canvas e spawna un enemy
