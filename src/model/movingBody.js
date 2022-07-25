@@ -1,8 +1,5 @@
 import { Body } from "./body.js";
-import { getO } from "../global.js";
 import { Vector2D } from "./Vector2D.js";
-import { Projectile } from "./projectile.js";
-import { MIN_PROJECTILE_VELOCITY } from "../consts.js";
 
 export class MovingBody extends Body {
     constructor(x, y, radius, color, vx, vy, v, alpha) {

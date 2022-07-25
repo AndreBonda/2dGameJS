@@ -67,7 +67,5 @@ export class Queue {
             result = result.concat(`${current.val}, `);
             current = current.prev;
         }
-
-        console.log(result.substring(0, result.length - 2));
     }
 }

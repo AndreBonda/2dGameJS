@@ -17,6 +17,5 @@ export function randomFloat(max) {
 }
 
 export function randomColor() {
-  console.log()
   return `#${Math.floor(Math.random()*16777215).toString(16)}`;
 }
