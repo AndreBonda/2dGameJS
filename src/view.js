@@ -52,7 +52,7 @@ export class View {
             this.c.beginPath();
             this.c.strokeStyle = PROJECTILE_COLOR;
             this.c.lineWidth = 1;
-            this.c.moveTo(this.x, this.y);
+            this.c.moveTo(p.x, p.y);
             this.c.lineTo(lastPos.x, lastPos.y);
             this.c.stroke();
         }

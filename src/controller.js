@@ -11,7 +11,8 @@ export class Controller {
     }
 
     animate() {
-        if (this.model.isGameRunning()) {
+        if (this.model.isGameRunning()) 
+        {
             this.view.refreshCanvas(this.model.getScore());
             const player = this.model.getPlayer();
             this.view.renderBody(player);
